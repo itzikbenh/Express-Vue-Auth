@@ -3,7 +3,7 @@
         <div class="logging-out absolute h-full w-full pin z-20" v-if="$store.state.auth.loggingOut">
             <div class="shadow max-w-sm mx-auto text-center p-6 mt-16 bg-white relative">
                 <h1 class="saving">
-                    Loggin out
+                    Logging out
                     <span>.</span><span>.</span><span>.</span>
                 </h1>
             </div>
