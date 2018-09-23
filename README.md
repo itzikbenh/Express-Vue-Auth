@@ -13,7 +13,7 @@ $ npm run production
 
 ## Auth Strategy
 I decided that I want to have the ability to track all user's logins and allow him to log himself out from all devices. Each logged in device has its own JWT that is stored inside the `user_logins` JSON column in the `users` tables, and in an `httpOnly` cookie as well.  
-Once a user logs out, the JWT is removed from the cookie and from the Database as well. If he logs out from all devices then we still delete everything in the `user_logins` column. 
+Once a user logs out, the JWT is removed from the cookie and from the Database as well. If he logs out from all devices then we will delete everything in the `user_logins` column. 
 This way we can easily invalidate tokens and also provide good UX to the user in which we keep him logged in, in other devices even if he logs out from the current one. 
 
 ## JWT secret
