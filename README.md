@@ -5,7 +5,7 @@ The Vue code structure was heavily inspired by the [Vue enterprise boilerplate](
 
 ## Installtion
 This app uses MySQL for the Database and you'll also need to globally install [Knex.js](https://knexjs.org/#Migrations-CLI) to run the migrations. 
-Download/clone the project and then run the root directory.
+Download/clone the project and then run in the root directory.
 ```sh
 $ npm install
 $ npm run production 
