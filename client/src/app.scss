@@ -1,0 +1,158 @@
+@tailwind preflight;
+
+body {
+    background: #eeeeee;
+}
+
+button {
+    outline: none !important;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+@-webkit-keyframes spinAround {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+@keyframes spinAround {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+
+.input, .select-input select {
+    @apply .bg-white .shadow .rounded .w-full .border .appearance-none .py-2 .px-3 .text-black .resize-none;
+    &:focus:not(.has-error) {
+        @apply .border-blue;
+    }
+    &.has-error {
+        @apply .mb-2;
+    }
+    &.has-error, &.has-error:focus {
+        @apply .border-red;
+    }
+    outline: none;
+}
+
+.form-item {
+    @apply .mb-4;
+    &.has-error {
+        @apply .mb-2;
+        .input {
+            @apply .mb-2;
+        }
+        .input, .input:focus {
+            @apply .border-red;
+        }
+    }
+    .label {
+        @apply .block .text-grey-darker .text-sm .font-bold .mb-2;
+    }
+    p {
+        margin-top: 0;
+    }
+}
+
+
+.button {
+    @apply .relative .font-bold .py-2 .px-4 .rounded .shadow .border .whitespace-no-wrap .inline-block .text-center .align-middle .cursor-pointer .font-semibold;
+
+    &.button-small {
+        @apply .text-xs;
+    }
+
+    &.button-white {
+        @apply .bg-white .text-black .border-grey-light;
+
+        &:hover {
+            @apply .bg-grey-lightest;
+        }
+        &:focus {
+            box-shadow: 0 0 8px config('colors.grey');
+        }
+    }
+    &.button-primary {
+        @apply .bg-blue .text-white .border-blue-light;
+
+        &:hover {
+            @apply .bg-blue-dark;
+        }
+
+        &:focus, &:active {
+            box-shadow: 0 0 8px config('colors.blue');
+        }
+    }
+    &.button-red {
+        @apply .bg-red .text-white .border-red-light;
+
+        &:hover {
+            @apply .bg-red-dark;
+        }
+        &:focus, &:active {
+            box-shadow: 0 0 8px config('colors.red');
+        }
+    }
+    &.button-indigo {
+        @apply .bg-indigo .text-white .border-indigo-light;
+
+        &:hover {
+            @apply .bg-indigo-dark;
+        }
+        &:focus, &:active {
+            box-shadow: 0 0 8px config('colors.indigo');
+        }
+    }
+    &.button-purple {
+        @apply .bg-purple .text-white .border-purple-light;
+
+        &:hover {
+            @apply .bg-purple-dark;
+        }
+        &:focus, &:active {
+            box-shadow: 0 0 8px config('colors.purple');
+        }
+    }
+    &.button-green {
+        @apply .bg-green .text-white .border-green-light;
+
+        &:hover {
+            @apply .bg-green-dark;
+        }
+        &:focus, &:active {
+            box-shadow: 0 0 8px config('colors.green');
+        }
+    }
+    &[disabled] {
+        @apply .opacity-50 .cursor-not-allowed;
+    }
+    &.is-loading {
+        @apply .opacity-50 .text-transparent .pointer-events-none .relative;
+        &:after {
+            @apply .border-solid .border-2 .block .h-4 .w-4 .absolute;
+            border-color: transparent transparent white white !important;
+            animation: spinAround 500ms infinite linear;
+            border-radius: 290486px;
+            content: "";
+            left: calc(50% - (1rem / 2));
+            top: calc(50% - (1rem / 2));
+        }
+    }
+}
+
+@tailwind utilities;
