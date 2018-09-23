@@ -102,6 +102,9 @@ router.post(
                 reset_token: null,
             });
 
+            //Logout from all devices
+            await user.logout(req, res, true);
+
             res.status(200).end();
         } catch (error) {
             console.log(error);
@@ -126,6 +129,21 @@ router.post('/logout', async (req, res) => {
             .first();
 
         await user.logout(req, res);
+
+        res.status(200).end();
+    } else {
+        res.status(401).end();
+    }
+});
+
+router.post('/logout/all', async (req, res) => {
+    if (req.user) {
+        const user = await User.query()
+            .select('id', 'login_tokens')
+            .where('id', req.user.id)
+            .first();
+
+        await user.logout(req, res, true);
 
         res.status(200).end();
     } else {

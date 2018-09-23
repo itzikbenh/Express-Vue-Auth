@@ -2,10 +2,6 @@ const { User } = require('../models');
 const { timeDiffFromNow } = require('../helpers/date');
 const { verifyToken } = require('../helpers/auth');
 
-const crypto = require('crypto');
-
-//console.log(crypto.randomBytes(256).toString('base64'));
-
 module.exports = async (req, res, next) => {
     const token = req.cookies.user_login;
 
@@ -31,7 +27,6 @@ module.exports = async (req, res, next) => {
             req.login_token = login_token[0].token;
             const timeDiff = timeDiffFromNow(payload.expiresAt);
             if (+timeDiff.days >= 0 && +timeDiff.hours >= 0) {
-                delete user.password;
                 req.user = user;
                 return next();
             }

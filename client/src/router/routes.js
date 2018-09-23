@@ -25,6 +25,9 @@ export default [
         path: '/register',
         name: 'register',
         component: Register,
+        meta: {
+            guestRequired: true,
+        },
         beforeEnter(routeTo, routeFrom, next) {
             if (store.getters['auth/loggedIn']) {
                 next({ name: 'home' });
@@ -37,6 +40,9 @@ export default [
         path: '/login',
         name: 'login',
         component: Login,
+        meta: {
+            guestRequired: true,
+        },
         beforeEnter(routeTo, routeFrom, next) {
             if (store.getters['auth/loggedIn']) {
                 next({ name: 'home' });

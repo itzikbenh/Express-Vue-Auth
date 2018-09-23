@@ -34,6 +34,7 @@ export default {
         async submit() {
             try {
                 const user = await this.form.post('http://localhost:3000/password/email');
+                this.$notify.open('Reset link has been sent to your email.');
             } catch (error) {
                 console.log(error);
             }

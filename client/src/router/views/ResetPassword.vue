@@ -42,6 +42,7 @@ export default {
         async submit() {
             try {
                 const user = await this.form.post('http://localhost:3000/password/reset');
+                this.$notify.open('Password has been updated successfully.');
                 this.$router.replace({ name: 'login' });
             } catch (error) {
                 console.log(error);

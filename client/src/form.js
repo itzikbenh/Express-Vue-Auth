@@ -1,3 +1,12 @@
+import axios from 'axios';
+//So cookies will be sent to cross domains
+if (process.env.NODE_ENV === 'development') {
+    axios.defaults.withCredentials = true;
+}
+axios.defaults.headers.common['CSRF-Token'] = document.cookie.replace(
+    /(?:(?:^|.*;\s*)X-CSRF-TOKEN\s*\=\s*([^;]*).*$)|^.*$/,
+    '$1',
+);
 class Errors {
     /**
      * Create a new Errors instance.

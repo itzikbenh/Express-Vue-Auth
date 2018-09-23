@@ -52,8 +52,9 @@ export default {
         async submit() {
             try {
                 const user = await this.form.post('http://localhost:3000/login');
+                this.$notify.open('Welcome back!');
                 this.$store.commit('auth/setUser', user);
-                this.$router.push({ name: 'home' });
+                this.$router.push({ name: 'profile' });
             } catch (error) {
                 console.log(error);
             }

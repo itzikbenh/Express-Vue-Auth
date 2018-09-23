@@ -12,16 +12,19 @@ const router = new VueRouter({
 
 router.beforeEach(async (routeTo, routeFrom, next) => {
     const authRequired = routeTo.matched.some(route => route.meta.authRequired);
+    const guestRequired = routeTo.matched.some(route => route.meta.guestRequired);
 
-    if (!authRequired) return next();
+    //If only for guests, we want to wait for setUser before we go next()
+    //That way the beforeEnter only runs after we know if user is logged in, or not
+    if (!authRequired && !guestRequired) return next();
 
     await store.dispatch('auth/setUser');
 
-    if (store.getters['auth/loggedIn']) {
-        return next();
+    if (authRequired && !store.getters['auth/loggedIn']) {
+        next({ name: 'login' });
+    } else {
+        next();
     }
-
-    next({ name: 'login' });
 });
 
 export default router;

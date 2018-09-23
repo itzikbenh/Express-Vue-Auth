@@ -55,6 +55,8 @@ export default {
         async submit() {
             try {
                 const res = await this.form.post('http://localhost:3000/register');
+                this.$notify.open('You have been registered successfully.');
+                this.$router.push({ name: 'profile' });
                 console.log(res);
             } catch (error) {
                 console.log(error);

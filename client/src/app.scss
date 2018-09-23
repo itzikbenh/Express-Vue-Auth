@@ -155,4 +155,105 @@ a {
     }
 }
 
+.table {
+    @apply .w-full;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    th {
+        @apply .text-left;
+    }
+    td, th {
+        @apply .border .border-solid .border-grey-light .py-2 .px-3 .align-top;
+    }
+
+    &.is-bordered {
+        tr:last-child td, tr:last-child th {
+            @apply .border-b;
+        }
+        td, th {
+            @apply .border;
+        }
+    }
+}
+
+
+
+// Fade out
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0.5;
+        transform: translate3d(100%, 0, 0);
+    }
+}
+.fadeOut {
+    animation-name: fadeOut;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translate3d(100%, 0, 0);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+.fadeInDown {
+    animation-name: fadeInDown;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(100%, 0, 0);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+.fadeInUp {
+    animation-name: fadeInUp;
+}
+
+$speed-slow: 150ms !default;
+$speed-slower: 250ms !default;
+
+// Fade
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity $speed-slow;
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.notices {
+    @apply .z-50 .fixed .pin-r;
+    &.is-top {
+        @apply .pin-t;
+    }
+    &.is-bottom {
+        @apply .pin-b;
+    }
+    .toast {
+        @apply .border-l-4 .text-white .p-4 .m-2;
+        animation-duration: 150ms;
+        &.is-success {
+            @apply .border-green-dark;
+            background: #68CD86;
+        }
+        &.is-danger {
+            @apply .bg-red-light .border-red-dark;
+        }
+    }
+}
+
 @tailwind utilities;

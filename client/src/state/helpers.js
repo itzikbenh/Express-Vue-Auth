@@ -8,4 +8,4 @@ export const authComputed = {
     ...mapGetters('auth', ['loggedIn']),
 };
 
-export const authMethods = mapActions('auth', ['logOut']);
+export const authMethods = mapActions('auth', ['logOut', 'logOutAll']);
