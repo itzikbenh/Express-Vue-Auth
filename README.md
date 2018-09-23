@@ -3,7 +3,7 @@
 This is a basic demo of a user authenticaion system written in Node.js Express and consumed by Vue.js.
 The Vue code structure was heavily inspired by the [Vue enterprise boilerplate](https://github.com/chrisvfritz/vue-enterprise-boilerplate)
 
-## Installtion
+## Installation
 This app uses MySQL for the Database and you'll also need to globally install [Knex.js](https://knexjs.org/#Migrations-CLI) to run the migrations. 
 Download/clone the project and then run in the root directory.
 ```sh
