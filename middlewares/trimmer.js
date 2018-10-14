@@ -1,13 +1,14 @@
 module.exports = (req, res, next) => {
     function deepTrim(params) {
-        Object.keys(params).forEach(property => {
-            if (typeof params[property] === 'object' || params[property] instanceof Object) {
-                deepTrim(params[property]);
-            } else if (typeof params[property] === 'string' || params[property] instanceof String) {
-                params[property] = params[property].trim() ? params[property].trim() : null;
+        for (const [field, value] of Object.entries(params)) {
+            if (typeof value === 'object' || value instanceof Object) {
+                deepTrim(value);
+            } else if (typeof value === 'string' || value instanceof String) {
+                params[field] = value.trim() ? value.trim() : null;
             }
-        });
+        }
     }
+
     deepTrim(req.body);
 
     next();

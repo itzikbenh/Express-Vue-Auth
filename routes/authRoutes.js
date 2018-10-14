@@ -123,12 +123,7 @@ router.get('/user', (req, res) => {
 
 router.post('/logout', async (req, res) => {
     if (req.user) {
-        const user = await User.query()
-            .select('id', 'login_tokens')
-            .where('id', req.user.id)
-            .first();
-
-        await user.logout(req, res);
+        await req.user.logout(req, res);
 
         res.status(200).end();
     } else {
@@ -138,12 +133,7 @@ router.post('/logout', async (req, res) => {
 
 router.post('/logout/all', async (req, res) => {
     if (req.user) {
-        const user = await User.query()
-            .select('id', 'login_tokens')
-            .where('id', req.user.id)
-            .first();
-
-        await user.logout(req, res, true);
+        await req.user.logout(req, res, true);
 
         res.status(200).end();
     } else {
@@ -178,7 +168,7 @@ router.post(
                 .first();
 
             if (!user) {
-                res.status(422).json({ email: 'These credentials do not match our records.' });
+                return res.status(422).json({ email: 'These credentials do not match our records.' });
             }
 
             const validPassword = await user.authenticate(req.body.password);
