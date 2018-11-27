@@ -3,10 +3,7 @@ import axios from 'axios';
 if (process.env.NODE_ENV === 'development') {
     axios.defaults.withCredentials = true;
 }
-axios.defaults.headers.common['CSRF-Token'] = document.cookie.replace(
-    /(?:(?:^|.*;\s*)X-CSRF-TOKEN\s*\=\s*([^;]*).*$)|^.*$/,
-    '$1',
-);
+
 class Errors {
     /**
      * Create a new Errors instance.
@@ -165,6 +162,11 @@ export default class Form {
      * @param {string} url
      */
     async submit(requestType, url) {
+        axios.defaults.headers.common['CSRF-Token'] = document.cookie.replace(
+            /(?:(?:^|.*;\s*)X-CSRF-TOKEN\s*\=\s*([^;]*).*$)|^.*$/,
+            '$1',
+        );
+
         try {
             this.isSubmitting = true;
             let res = await axios[requestType](url, this.data());
