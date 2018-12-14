@@ -26,18 +26,18 @@
 
 <script>
 import Layout from '../layouts/Main';
-import { authComputed, authMethods } from '../../state/helpers';
+import { authMethods } from '../../state/helpers';
 
 export default {
     components: { Layout },
     props: {
         user: {
             type: Object,
-            required: true,
-        },
+            required: true
+        }
     },
     methods: {
-        ...authMethods,
-    },
+        ...authMethods
+    }
 };
 </script>

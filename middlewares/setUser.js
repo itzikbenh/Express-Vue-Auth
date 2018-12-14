@@ -9,7 +9,11 @@ module.exports = async (req, res, next) => {
         return next();
     }
 
-    const payload = verifyToken(token);
+    try {
+        var payload = verifyToken(token);
+    } catch (err) {
+        return next();
+    }
 
     if (!payload) {
         return next();

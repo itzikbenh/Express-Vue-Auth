@@ -1,9 +1,3 @@
-import axios from 'axios';
-//So cookies will be sent to cross domains
-if (process.env.NODE_ENV === 'development') {
-    axios.defaults.withCredentials = true;
-}
-
 class Errors {
     /**
      * Create a new Errors instance.
@@ -99,7 +93,9 @@ export default class Form {
     data() {
         let data = {};
 
-        Object.keys(this.originalData).forEach(attr => (data[attr] = this[attr]));
+        Object.keys(this.originalData).forEach(
+            attr => (data[attr] = this[attr])
+        );
 
         return data;
     }
@@ -162,16 +158,14 @@ export default class Form {
      * @param {string} url
      */
     async submit(requestType, url) {
-        axios.defaults.headers.common['CSRF-Token'] = document.cookie.replace(
-            /(?:(?:^|.*;\s*)X-CSRF-TOKEN\s*\=\s*([^;]*).*$)|^.*$/,
-            '$1',
-        );
-
         try {
             this.isSubmitting = true;
             let res = await axios[requestType](url, this.data());
             this.isSubmitting = false;
-            if ((requestType === 'post' || requestType === 'delete') && this.resetForm) {
+            if (
+                (requestType === 'post' || requestType === 'delete') &&
+                this.resetForm
+            ) {
                 this.reset();
             }
             this.errors.clear();
@@ -184,15 +178,6 @@ export default class Form {
             }
             throw error.response;
         }
-    }
-
-    /**
-     * Handle a successful form submission.
-     *
-     * @param {object} data
-     */
-    onSuccess(data) {
-        this.reset();
     }
 
     /**

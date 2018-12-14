@@ -7,7 +7,7 @@
 <script>
 import Layout from '../layouts/Main';
 export default {
-    components: { Layout },
+    components: { Layout }
 };
 </script>
 

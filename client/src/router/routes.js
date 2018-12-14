@@ -10,55 +10,41 @@ export default [
     {
         path: '/',
         name: 'home',
-        component: Home,
+        component: Home
     },
     {
         path: '/profile',
         name: 'profile',
         component: Profile,
         meta: {
-            authRequired: true,
+            authRequired: true
         },
-        props: route => ({ user: store.state.auth.currentUser }),
+        props: route => ({ user: store.state.auth.currentUser })
     },
     {
         path: '/register',
         name: 'register',
         component: Register,
         meta: {
-            guestRequired: true,
-        },
-        beforeEnter(routeTo, routeFrom, next) {
-            if (store.getters['auth/loggedIn']) {
-                next({ name: 'home' });
-            } else {
-                next();
-            }
-        },
+            guestRequired: true
+        }
     },
     {
         path: '/login',
         name: 'login',
         component: Login,
         meta: {
-            guestRequired: true,
-        },
-        beforeEnter(routeTo, routeFrom, next) {
-            if (store.getters['auth/loggedIn']) {
-                next({ name: 'home' });
-            } else {
-                next();
-            }
-        },
+            guestRequired: true
+        }
     },
     {
         path: '/password/reset',
         name: 'requestResetLink',
-        component: RequestResetLink,
+        component: RequestResetLink
     },
     {
         path: '/password/reset/:token',
         name: 'resetPassword',
-        component: ResetPassword,
-    },
+        component: ResetPassword
+    }
 ];

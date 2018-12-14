@@ -1,14 +1,19 @@
 <template>
     <div id="app">
-        <div class="logging-out absolute h-full w-full pin z-20" v-if="$store.state.auth.loggingOut">
+        <div
+            class="logging-out absolute h-full w-full pin z-20"
+            v-if="$store.state.auth.loggingOut"
+        >
             <div class="shadow max-w-sm mx-auto text-center p-6 mt-16 bg-white relative">
                 <h1 class="saving">
                     Logging out
-                    <span>.</span><span>.</span><span>.</span>
+                    <span>.</span>
+                    <span>.</span>
+                    <span>.</span>
                 </h1>
             </div>
         </div>
-        <router-view :key="$route.fullPath" />
+        <router-view :key="$route.fullPath"/>
     </div>
 </template>
 
@@ -18,8 +23,8 @@ import HelloWorld from './components/HelloWorld.vue';
 export default {
     name: 'app',
     components: {
-        HelloWorld,
-    },
+        HelloWorld
+    }
 };
 </script>
 
