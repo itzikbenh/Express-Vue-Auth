@@ -11,9 +11,9 @@ const router = new VueRouter({
 });
 
 router.beforeEach(async (routeTo, routeFrom, next) => {
-    if (!store.getters['auth/initialized']) {
+    // If this is an initial page load
+    if (routeFrom.name === null) {
         await store.dispatch('auth/setUser');
-        store.commit('auth/initialize');
     }
 
     const authRequired = routeTo.matched.some(({ meta }) => meta.authRequired);

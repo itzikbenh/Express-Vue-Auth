@@ -3,8 +3,7 @@ import Vue from 'vue';
 
 export const state = {
     currentUser: {},
-    loggingOut: false,
-    initialized: false
+    loggingOut: false
 };
 
 export const mutations = {
@@ -13,9 +12,6 @@ export const mutations = {
     },
     loggingOut(state, bool) {
         state.loggingOut = bool;
-    },
-    initialize(state) {
-        state.initialized = true;
     }
 };
 
@@ -25,9 +21,6 @@ export const getters = {
     },
     loggingOut(state) {
         return state.loggingOut;
-    },
-    initialized(state) {
-        return state.initialized;
     }
 };
 
