@@ -12,6 +12,5 @@ router.post('/register', userController.create);
 
 router.post('/login', sessionController.create);
 router.post('/logout', sessionController.delete);
-router.post('/logout/all', sessionController.deleteAll);
 
 module.exports = router;

@@ -52,7 +52,7 @@ export const actions = {
     async logOutAll({ commit }) {
         try {
             commit('loggingOut', true);
-            await Vue.prototype.$axios.post('/logout/all');
+            await Vue.prototype.$axios.post('/logout', { logOutAll: true });
             router.push({ name: 'login' });
             commit('setUser', {});
             setTimeout(() => {

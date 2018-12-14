@@ -49,18 +49,11 @@ exports.create = [
 
 exports.delete = async (req, res) => {
     if (req.user) {
-        await req.user.logout(req, res);
-
-        res.status(200).end();
-    } else {
-        res.status(401).end();
-    }
-};
-
-exports.deleteAll = async (req, res) => {
-    if (req.user) {
-        await req.user.logout(req, res, true);
-
+        if (req.body.logOutAll) {
+            await req.user.logout(req, res, true);
+        } else {
+            await req.user.logout(req, res);
+        }
         res.status(200).end();
     } else {
         res.status(401).end();
